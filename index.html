@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 2 Meses</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: transform 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background: #d81b60;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .falling-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .falling-hearts span {
+            position: absolute;
+            color: purple;
+            font-size: 20px;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+        .video-container {
+            position: relative;
+            width: 300px;
+            height: 533px;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="falling-hearts" id="heart-container"></div>
+    <div class="card" id="mainCard">
+        <h2>🎉 ¡Feliz 2 Meses, mi amor! 🎉</h2>
+        <p>Han sido 2 meses maravillosos a tu lado. 💕</p>
+        <p>Gracias por cada sonrisa, cada abrazo y cada momento especial.</p>
+        <p>Eres la persona más especial en mi vida y cada día contigo es un regalo. 💖</p>
+        <p>Mi amor por ti sigue creciendo cada día más. 🥰</p>
+        <p>Te quiero mucho ❤️</p>
+        <button onclick="showLove()">Sí 💕</button>
+    </div>
+    
+    <div id="content" class="hidden">
+        <p>¡Sabía que dirías que sí! Te amo 💕</p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/hLiSuAwOa7Y" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showLove() {
+            document.getElementById("mainCard").remove();
+            document.getElementById("content").classList.remove("hidden");
+        }
+        
+        function createHearts() {
+            const container = document.getElementById("heart-container");
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement("span");
+                heart.innerHTML = "💜";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                heart.style.fontSize = Math.random() * 20 + 10 + "px";
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
